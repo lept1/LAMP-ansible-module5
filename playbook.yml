@@ -1,0 +1,7 @@
+---
+  - name: "LAMP stack"
+    hosts: localhost
+    connection: local 
+    roles:
+      - apache2
+      - mariadb

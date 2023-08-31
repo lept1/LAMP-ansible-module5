@@ -1,0 +1,26 @@
+# roles/webserver/tasks/main.yml
+---
+- name: 1. install Apache
+  apt: name=apache2 state=present
+
+- name: 2.0 add ppa for PHP 
+  apt_repository:
+    repo: ppa:ondrej/php
+
+- name: 2.1 Update apt-get repo and cache
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+- name: 2.2 install PHP module for Apache
+  apt:     
+    name:
+      - php5.6
+      - libapache2-mod-php5.6 
+      - php5.6-mysql
+    state: latest
+    update_cache: true
+
+- name: 3. start Apache
+  service: name=apache2 state=started enabled=yes
+
+- name: 4. install Hello World PHP script
+  copy: src=index.php dest=/var/www/html/index.php mode=0664
