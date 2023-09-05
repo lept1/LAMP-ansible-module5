@@ -6,6 +6,11 @@ Run:
 ansible-playbook playbook.yml
 ```
 
+In case you don't have editing permissions as might be the case of Ubuntu virtual machines, one solution is to use sudo in the following way:
+```
+sudo ansible-playbook playbook.yml
+```
+
 Then visit 
 ```
 http://localhost/index.php
